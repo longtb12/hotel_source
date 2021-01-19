@@ -1,0 +1,92 @@
+﻿<style>
+
+    .row_padding {
+        padding: 8px;
+    }
+</style>
+
+<div class="content">
+    <div class="card">
+        <div class="card-header header-elements-sm-inline"><h6 class="card-title">Quản lý loại phòng</h6></div>
+        <div class="card-body border-top-1 border-top-pink" style="display: flex;">
+            <div class="col-md-6 border-right-1 border-right-pink">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="table-border-solid bg-blue-800">
+                                <th class="text-center">STT</th>
+                                <th class="text-center">Mã</th>
+                                <th class="text-center">Tên</th>
+                                <th class="text-center">Giá</th>
+                                <th class="text-center" style="width: 75px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in roomTypes">
+                                <td class="text-center">{{item.Order}}</td>
+                                <td class="text-left">{{item.Code}}</td>
+                                <td class="text-left">{{item.Name}}</td>
+                                <td class="text-left">{{item.Price}}</td>
+                                <td>
+                                    <button type="button" action-user="143A" ui-sref-active="active" ng-click="getdata(item.Id)"><i class="icon-pencil7"></i></button>
+                                    <button type="button" action-user="144A" ui-sref-active="active" ng-click="delete(item.Id)"><i class="icon-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <div class="row row_padding">
+                    <pagination page-index="request.page_index" total-items="total_page" ng-if="total_page>1" ng-click="init()"></pagination>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+                <div class="form-group">
+                    <button type="button" action-user="142A" ui-sref-active="active" class="btn btn-secondary" ng-show="roomType.Id != 0" ng-click="create()"><i class="icon-plus-circle2"></i> Thêm loại phòng</button>
+                    <button type="button" action-user="144A" ui-sref-active="active" class="btn btn-light btn-sm" ng-show="roomType.Id != 0" ng-click="delete(roomType.Id)"><i class="icon-lock5"></i> Khóa</button>
+                    <button type="submit" action-user="145A" ui-sref-active="active" form="formRoomType" ng-show="formRoomType" class="btn btn-primary"><i class="icon-floppy-disk"></i> Xác nhận</button>
+                </div>
+                <div class="col-md-12">
+                    <form id="formRoomType" name="formRoomType" novalidate ng-submit="submit(formRoomType)">
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Tên loại phòng</span>
+
+                            </div>
+                            <div class="col-9 ">
+
+                                <input id="name" name="name" maxlength="255" placeholder="Tên loại phòng" required class="form-control" ng-model="roomType.Name" type="text" ng-class="{ 'is-invalid' : formRoomType.name.$invalid && !formRoomType.name.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formRoomType.name.$invalid && !formPosition.name.$pristine">
+                                    Tên loại phòng không được để trống.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Giá phòng</span>
+
+                            </div>
+                            <div class="col-9 ">
+
+                                <input id="price" name="price" maxlength="255" placeholder="Nhập giá phòng" required class="form-control" ng-model="roomType.Price" type="number" ng-class="{ 'is-invalid' : formRoomType.price.$invalid && !formRoomType.price.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formRoomType.price.$invalid && !formPosition.price.$pristine">
+                                    Giá phòng không được để trống.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Mô tả</span>
+                            </div>
+                            <div class="col-9">
+                                <textarea id="description" name="roomType.description" placeholder="Mô tả" class="form-control" maxlength="400" ng-model="roomType.Description" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

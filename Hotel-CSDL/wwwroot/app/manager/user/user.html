@@ -1,0 +1,262 @@
+﻿<style>
+    .row_padding {
+        padding: 8px;
+    }
+</style>
+
+
+<div class="content">
+
+    <div class="card">
+        <div class="card-header header-elements-inline"><h6 class="card-title">Quản lý người dùng</h6></div>
+        <div class="card-body border-top-1 border-top-pink">
+            <div class="row">
+                <div class="col-4">
+
+                </div>
+                <div class="col-8">
+                    <button action-user="117A" ui-sref-active="active" type="button" class="btn bg-danger btn-xs" ng-click="add_user()"><i class="icon-plus-circle2"></i> Thêm người dùng</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <legend class="text-bold text-uppercase">Đơn vị - Phòng ban</legend>
+                </div>
+                <div class="col-8">
+                    <legend class="text-bold text-uppercase">
+                        Danh sách người dùng theo đơn vị - phòng ban
+
+                    </legend>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="tree-default"></div>
+                </div>
+                <div class="col-md-8">
+                    <div class="table-responsive">
+                        <table class="table text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" style="width: 50px;">#</th>
+                                    <th style="width: 300px;">Tên người dùng</th>
+                                    <th>Tên đăng nhập</th>
+                                    <th>Email</th>
+                                    <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in users">
+                                    <td class="text-center">{{$index +1}}</td>
+                                    <td class="text-left">{{item.FirstName}} {{item.LastName}}</td>
+                                    <td class="text-left">{{item.UserName}}</td>
+                                    <td class="text-left">{{item.Email}}</td>
+                                    <td class="text-center">
+                                        <button type="button" action-user="118A" ui-sref-active="active" ng-click="getdata(item.Id)"> <i class="icon-pencil7"></i></button>
+                                        <button type="button" action-user="119A" ui-sref-active="active" ng-click="deleted(item.Id)"><i class="icon-trash"></i></button>
+                                        <button type="button" action-user="120A" ui-sref-active="active" ng-click="add_Role(item.Id)">Phân Quyền</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <div id="add_edit_user" class="modal" data-keyboard="false" data-backdrop="false" tabindex="-1">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">{{titlePopupUser}}</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="table-responsive">
+                                    <form id="formUser" name="formUser" novalidate ng-submit="submit(formUser)">
+                                        <div class="row row_padding">
+                                            <div class="col-4">
+                                                <span class="lbl">Họ và tên</span>
+                                            </div>
+                                            <div class="col-4 ">
+                                                <input id="firstName" name="firstName" maxlength="255" placeholder="Họ tên đệm" ng-model="user.FirstName" required class="form-control" type="text" ng-class="{ 'is-invalid' : formUser.firstName.$invalid && !formUser.firstName.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="formUser.firstName.$invalid && !formUser.firstName.$pristine">
+                                                    Họ tên đệm không được để trống.
+                                                </div>
+                                            </div>
+                                            <div class="col-4 ">
+                                                <input id="lastName" name="lastName" maxlength="255" placeholder="Tên" ng-model="user.LastName" required class="form-control" type="text" ng-class="{ 'is-invalid' : formUser.lastName.$invalid && !formUser.lastName.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="formUser.lastName.$invalid && !formUser.lastName.$pristine">
+                                                    Tên không được để trống.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row row_padding">
+                                            <div class="col-4">
+                                                <span class="lbl">Email</span>
+                                            </div>
+                                            <div class="col-8">
+                                                <input id="email" name="email" maxlength="255" placeholder="Email" required class="form-control" ng-model="user.Email" type="email" ng-class="{ 'is-invalid' : formUser.Email.$invalid && !formUser.Email.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="formUser.email.$invalid && !formUser.email.$pristine">
+                                                    Email không được để trống.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row row_padding">
+                                            <div class="col-4">
+                                                <span class="lbl">Tên đăng nhập</span>
+                                            </div>
+                                            <div class="col-8">
+                                                <input id="userName" name="userName" maxlength="255" placeholder="Tên đăng nhập" ng-disabled="user.Id != 0" ng-model="user.UserName" required class="form-control" type="text" ng-class="{ 'is-invalid' : formUser.userName.$invalid && !formUser.userName.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="formUser.userName.$invalid && !formUser.userName.$pristine">
+                                                    Tên đăng nhập không được để trống.
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row row_padding">
+                                            <div class="col-4">
+                                                <span class="lbl">Mật khẩu</span>
+                                            </div>
+                                            <div class="col-4 ">
+                                                <input id="password" name="password" maxlength="255" placeholder="Nhập mật khẩu" ng-model="user.Password" required class="form-control" type="password" ng-class="{ 'is-invalid' : formUser.password.$invalid && !formUser.password.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="formUser.password.$invalid && !formUser.password.$pristine">
+                                                    Mật khẩu không được để trống.
+                                                </div>
+                                            </div>
+                                            <div class="col-4 ">
+                                                <input id="rePassword" name="rePassword" maxlength="255" placeholder="Nhập lại mật khẩu" ng-model="user.RePassword" required compare-to="user.Password" class="form-control" type="password" ng-class="{ 'is-invalid' : formUser.rePassword.$invalid && !formUser.rePassword.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="formUser.rePassword.$invalid && !formUser.rePassword.$pristine">
+                                                    Mật khẩu không giống nhau.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row row_padding">
+                                            <div class="col-4">
+                                                <label for="departmentId">Đơn vị/phòng ban - Chức vụ<span class="required">*</span></label>
+                                            </div>
+                                            <div class="col-4 ">
+                                                <select id="departmentId" name="departmentId" class="form-control" ng-model="user.DepartmentId" ng-options="item.value as item.display_name for item in departments">
+                                                    <option value="">-- Chọn đơn vị/ phòng ban --</option>
+                                                </select>
+                                                <div class="invalid-feedback" ng-show="formUser.departmentId.$invalid && !formUser.departmentId.$pristine">Chưa chọn đơn vị/phòng ban.</div>
+                                            </div>
+                                            <div class="col-4 ">
+                                                <select id="positionId" name="positionId" class="form-control" ng-model="user.PositionId" ng-options="item.Id as item.Name for item in positions">
+                                                    <option value="">-- Chọn chức vụ --</option>
+                                                </select>
+                                                <div class="invalid-feedback" ng-show="formUser.positionId.$invalid && !formUser.positionId.$pristine">Chưa chọn đơn vị/phòng ban.</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row row_padding">
+                                            <div class="col-4">
+                                                <span class="lbl">CMND</span>
+                                            </div>
+                                            <div class="col-8">
+                                                <input id="IDCard" name="IDCard" maxlength="255" placeholder="Số CMND" ng-model="user.IDCard" required class="form-control" type="text" ng-class="{ 'is-invalid' : formUser.IDCard.$invalid && !formUser.IDCard.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="formUser.IDCard.$invalid && !formUser.IDCard.$pristine">
+                                                    CMND không được để trống.
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row row_padding">
+                                            <div class="col-4">
+                                                <span class="lbl">Giới tính - Ngày sinh</span>
+                                            </div>
+                                            <div class="col-4">
+                                                <select id="gender" name="gender" class="form-control" ng-model="user.Gender" ng-options="item.id as item.name for item in gender" required ng-class="{ 'is-invalid' : formUser.gender.$invalid && !formUser.gender.$pristine }">
+                                                    <option value="">-- Chọn giới tính --</option>
+                                                </select>
+                                                <div class="invalid-feedback" ng-show="formUser.gender.$invalid && !formUser.gender.$pristine">
+                                                    Chọn lại giới tính.
+                                                </div>
+                                            </div>
+                                            <div class="col-4">
+                                                <div class="form-group">
+                                                    <input type="text" id="BirthOfDay" name="BirthOfDay" class="form-control datepicker" placeholder="dd/MM/yyyy" autocomplete="off" ng-model="user.BirthOfDay" required ng-class="{ 'is-invalid' : formUser.BirthOfDay.$invalid && !formUser.BirthOfDay.$pristine }">
+                                                    <div class="invalid-feedback" ng-show="formUser.BirthOfDay.$invalid && !formUser.BirthOfDay.$pristine">
+                                                        Ngày sinh không được để trống.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row row_padding">
+                                            <div class="col-4">
+                                                <span class="lbl">Số điện thoại</span>
+                                            </div>
+                                            <div class="col-8 ">
+                                                <input id="phoneNumber" name="phoneNumber" maxlength="255" placeholder="Số điện thoại" ng-model="user.PhoneNumber" required class="form-control" type="text" ng-class="{ 'is-invalid' : formUser.phoneNumber.$invalid && !formUser.phoneNumber.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="formUser.phoneNumber.$invalid && !formUser.phoneNumber.$pristine">
+                                                    Số điện thoại không được để trống!
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row row_padding">
+                                            <div class="col-4">
+                                                <span class="lbl">Địa chỉ</span>
+                                            </div>
+                                            <div class="col-8">
+                                                <input id="Address" name="Address" maxlength="255" placeholder="Địa chỉ" ng-model="user.Address" required class="form-control" type="text" ng-class="{ 'is-invalid' : formUser.Address.$invalid && !formUser.Address.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="formUser.Address.$invalid && !formUser.Address.$pristine">
+                                                    Địa chỉ không được để trống!
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row row_padding">
+                                            <div class="col-xl-4">
+                                                <span class="lbl">Mô tả </span>
+                                            </div>
+                                            <div class="col-xl-8">
+                                                <textarea id="description" name="description" placeholder="Mô tả" class="form-control" maxlength="400" ng-model="customer.Description" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" action-user="121A" ui-sref-active="active" class="btn bg-primary btn-sm" ng-click="submit(formUser)"><i class="icon-floppy-disk"></i> Xác nhận</button>
+                            <button type="button" class="btn btn-link btn-sm" data-dismiss="modal"><i class="icon-close2"></i> Thoát</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="actionOfUser" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header border-bottom-pink">
+                            <h4 class="modal-title">Phân quyền cho người dùng</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="tree-default-permission">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" action-user="120A" ui-sref-active="active" ng-click="submitRoles()" class="btn bg-primary btn-sm"><i class="icon-floppy-disk"></i> Xác nhận</button>
+                            <button type="button" class="btn btn-link btn-sm" data-dismiss="modal"><i class="icon-close2"></i> Thoát</button>
+                        </div>
+                        
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

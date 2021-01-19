@@ -1,0 +1,220 @@
+﻿<style>
+
+    .row_padding {
+        padding: 8px;
+    }
+</style>
+
+<div class="content">
+    <div id="TelePortSearch" class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Danh sách khách hàng đang sử dụng phòng</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+
+                    <button type="button" class="btn btn-light btn-sm" ng-click="show_hide_advance_search()"><i class="{{searchBarClass}}"></i> Tìm kiếm nâng cao</button>
+                </div>
+            </div>
+        </div>
+        <div id="AreaSearchInformation" class="card-body border-top-1 border-top-pink">
+            <form name="search" novalidate ng-submit="searchCable()">
+                <div class="row row_padding">
+
+                </div>
+                <div class="text-center">
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="pagination()" style="margin-right: 5px;"><i class="icon-search4"></i> Tìm kiếm</button>
+                    <button type="button" class="btn btn-danger btn-sm" ng-click="reset()"><i class="icon-reset"></i> Xóa điều kiện</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="List" class="card">
+        <div class="card-body border-top-1 border-top-pink">
+            <div class="col-md-12">
+
+
+
+                <div class="row row_padding">
+
+                </div>
+
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="table-border-solid bg-blue-800">
+                            <th class="text-center" style="width: 50px;">Tên khách hàng</th>
+                            <th class="text-center" style="width: 150px;">Số CMND</th>
+                            <th class="text-center" style="width: 150px;">Số điện thoại</th>
+                            <th class="text-center" style="width: 150px;">Email</th>
+                            <th class="text-center" style="width: 150px;">Tiền cọc</th>
+                            <th class="text-center" style="width: 50px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in customers_gd">
+                            <td class="text-left">{{item.FirstName}} {{item.LastName}}</td>
+                            <td class="text-left">{{item.IDCard}}</td>
+                            <td class="text-left">{{item.PhoneNumber}}</td>
+                            <td class="text-left">{{item.Email}}</td>
+                            <td class="text-left">{{item.Deposit}}</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    <div class="dropdown">
+                                        <a href="javascript:void(0)" class="btn btn-rounded dropdown-toggle" data-toggle="dropdown"><i class="icon-menu3"></i></a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a class="dropdown-item" ng-click="get_by_id(item.Id)"><i class="icon-pencil7"></i> Thanh toán</a></li>
+                                            <li><a ui-sref-active="active" class="dropdown-item" ui-sref="tele_port_view({id:'{{item.entityId}}'})"><i class="icon-eye2"></i> Xem thông tin</a></li>
+                                            <li><button type="button" class="dropdown-item" ng-click="delete(item.entityId)"><i class="icon-trash"></i> Xóa</button></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row row_padding">
+                    <pagination page-index="request.page_index" total-items="total_page" ng-if="total_page>1" ng-click="pagination()"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="add_gd" class="modal" data-keyboard="false" data-backdrop="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tạo mới giao dịch</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <form id="form" name="form" novalidate ng-submit="submit(form)">
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Họ tên</span>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <input id="firstName" name="firstName" maxlength="255" placeholder="Họ tên đệm" class="form-control" ng-model="customer_gd.FirstName" type="text" ng-class="{ 'is-invalid' : form.firstName.$invalid && !form.firstName.$pristine }" />
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <input id="lastName" name="lastName" maxlength="255" placeholder="Tên"  class="form-control" ng-model="customer_gd.LastName" type="text" ng-class="{ 'is-invalid' : form.lastName.$invalid && !form.lastName.$pristine }" />
+                                    </div>
+                                </div>
+
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Giới tính - Điện thoại</span>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <select id="gender" name="gender" class="form-control" ng-model="customer_gd.Gender" ng-options="item.id as item.name for item in gender" >
+                                            <option value="">-- Chọn giới tính --</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <input id="phoneNumber" name="phoneNumber" maxlength="255" placeholder="Số điện thoại"  class="form-control" ng-model="customer_gd.PhoneNumber" type="text" ng-class="{ 'is-invalid' : form.phoneNumber.$invalid && !form.phoneNumber.$pristine }" />
+                                    </div>
+                                </div>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Email</span>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <input id="email" name="email" maxlength="255" placeholder="Email"  class="form-control" ng-model="customer_gd.Email" type="email" ng-class="{ 'is-invalid' : form.email.$invalid && !form.email.$pristine }" />
+                                        
+                                    </div>
+                                </div>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">CMT/Thẻ căn cước</span>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <input id="idCard" name="idCard" maxlength="255" placeholder="Số CMND"  class="form-control" ng-model="customer_gd.IDCard" type="text" ng-class="{ 'is-invalid' : form.idCard.$invalid && !form.idCard.$pristine }" />
+                                        
+                                    </div>
+                                </div>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Địa chỉ </span>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <input id="address" name="address" maxlength="255" placeholder="Địa chỉ"  class="form-control" ng-model="customer_gd.Address" type="text" ng-class="{ 'is-invalid' : form.address.$invalid && !form.address.$pristine }" />
+                                        
+                                    </div>
+                                </div>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Đặt cọc </span>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <input id="Deposit" name="Deposit" maxlength="255" placeholder="Đặt cọc"  class="form-control" ng-model="customer_gd.Deposit" type="number" ng-class="{ 'is-invalid' : form.Deposit.$invalid && !form.Deposit.$pristine }" />
+                                        
+                                    </div>
+                                </div>
+                                <fieldset>
+                                    <legend class="font-weight-semibold text-uppercase font-size-sm">
+                                        Danh sách phòng
+                                    </legend>
+                                    <div class="row">
+                                        <div class="col-md-12 table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr class="bg-light-gray">
+                                                        <th class="text-center" style="width: 40px;">#</th>
+                                                        <th class="text-center" style="width: 120px;">Phòng</th>
+                                                        <th class="text-center" style="width: 120px;">Ngày bắt đầu</th>
+                                                        <th class="text-center" style="width: 120px;">Ngày kết thúc</th>
+                                                        <th class="text-center" style="width: 140px;">Đơn Giá</th>
+                                                        <th class="text-center" style="width: 140px;">Giá</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in customer_gd.gds">
+                                                        <td class="text-center">{{$index + 1}}</td>
+                                                        <td>
+                                                            <select class="form-control" ng-model="item.Id" ng-change="change_room(item)" ng-options="u.Id as u.Name for u in roomsSelect">
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="StartDateGD" name="StartDateGD" class="form-control datepicker" ng-change="change_date(item)" placeholder="dd/MM/yyyy" autocomplete="off" ng-model="item.StartDate">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="EndDateGD" name="EndDateGD" class="form-control datepicker" ng-change="change_date(item)" placeholder="dd/MM/yyyy" autocomplete="off" ng-model="item.EndDate">
+                                                        </td>
+                                                        <td>
+                                                            {{item.RoomPrice}}
+                                                        </td>
+                                                        <td>
+                                                            {{item.Price}}
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Số tiền phải trả </span>
+                                    </div>
+                                    <div class="col-xl-6">
+
+                                    </div>
+                                    <div class="col-xl-2">
+                                        {{customer_gd.Price-customer_gd.Deposit}}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-primary btn-sm" ng-click="paid(customer_gd.Id)"><i class="icon-floppy-disk"></i> Thanh toán</button>
+                    <button type="button" class="btn btn-link btn-sm" data-dismiss="modal"><i class="icon-close2"></i> Thoát</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+
+    </div>
+</div>
+

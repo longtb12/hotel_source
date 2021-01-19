@@ -1,0 +1,135 @@
+﻿<style>
+
+    .row_padding {
+        padding: 8px;
+    }
+</style>
+
+<div class="content">
+    <div class="card">
+        <div class="card-header header-elements-sm-inline"><h6 class="card-title">Quản lý khách hàng</h6></div>
+        <div class="card-body border-top-1 border-top-pink" style="display: flex;">
+            <div class="col-md-5 border-right-1 border-right-pink">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="table-border-solid bg-blue-800">
+                                <th class="text-center">STT</th>
+                                <th class="text-center">Tên</th>
+                                <th class="text-center">Số CMND</th>
+                                <th class="text-center">Số điện thoại</th>
+                                <th class="text-center" style="width: 75px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in customers">
+                                <td class="text-center">{{item.Order}}</td>
+                                <td class="text-left">{{item.FirstName}} {{item.LastName}}</td>
+                                <td class="text-left">{{item.IDCard}}</td>
+                                <td class="text-left">{{item.PhoneNumber}}</td>
+                                <td>
+                                    <button action-user="148A" ui-sref-active="active" type="button" ng-click="getdata(item.Id)"><i class="icon-pencil7"></i></button>
+                                    <button action-user="149A" ui-sref-active="active" type="button" ng-click="delete(item.Id)"><i class="icon-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <div class="row row_padding">
+                    <pagination page-index="request.page_index" total-items="total_page" ng-if="total_page>1" ng-click="init()"></pagination>
+                </div>
+            </div>
+            <div class="col-md-7" style="padding: 10px">
+                <div class="form-group">
+                    <button type="button" action-user="147A" ui-sref-active="active" class="btn btn-secondary" ng-show="customer.Id != 0" ng-click="create()"><i class="icon-plus-circle2"></i> Thêm khách hàng</button>
+                    <button type="button" action-user="149A" ui-sref-active="active" class="btn btn-light btn-sm" ng-show="customer.Id != 0" ng-click="delete(customer.Id)"><i class="icon-lock5"></i> Khóa</button>
+                    <button type="submit" action-user="150A" ui-sref-active="active" form="formCustomer" ng-show="formCustomer" class="btn btn-primary"><i class="icon-floppy-disk"></i> Xác nhận</button>
+                </div>
+                <div class="col-md-12">
+                    <form id="formCustomer" name="formCustomer" novalidate ng-submit="submit(formCustomer)">
+                        <div class="row row_padding">
+                            <div class="col-xl-4">
+                                <span class="lbl">Họ tên</span>
+                            </div>
+                            <div class="col-xl-4">
+                                <input id="firstName" name="firstName" maxlength="255" placeholder="Họ tên đệm" required class="form-control" ng-model="customer.FirstName" type="text" ng-class="{ 'is-invalid' : formCustomer.firstName.$invalid && !formCustomer.firstName.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formCustomer.firstName.$invalid && !formCustomer.firstName.$pristine">
+                                    Họ tên đệm không được để trống.
+                                </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <input id="lastName" name="lastName" maxlength="255" placeholder="Tên" required class="form-control" ng-model="customer.LastName" type="text" ng-class="{ 'is-invalid' : formCustomer.lastName.$invalid && !formCustomer.lastName.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formCustomer.lastName.$invalid && !formCustomer.lastName.$pristine">
+                                    Tên không được để trống.
+                                </div>  
+                            </div>
+                        </div>
+                        
+                        <div class="row row_padding">
+                            <div class="col-xl-4">
+                                <span class="lbl">Giới tính - Điện thoại</span>
+                            </div>
+                            <div class="col-xl-4">
+                                <select id="gender" name="gender" class="form-control" ng-model="customer.Gender" ng-options="item.id as item.name for item in gender" required>
+                                    <option value="">-- Chọn giới tính --</option>
+                                </select>
+                                <div class="invalid-feedback" ng-show="formCustomer.gender.$invalid && !formCustomer.gender.$pristine">Chưa chọn giới tính.</div>
+                            </div>
+                            <div class="col-xl-4">
+                                <input id="phoneNumber" name="phoneNumber" maxlength="255" placeholder="Số điện thoại" required class="form-control" ng-model="customer.PhoneNumber" type="text" ng-class="{ 'is-invalid' : formCustomer.phoneNumber.$invalid && !formCustomer.phoneNumber.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formCustomer.phoneNumber.$invalid && !formCustomer.phoneNumber.$pristine">
+                                    Số điện thoại không được để trống.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-xl-4">
+                                <span class="lbl">Email</span>
+                            </div>
+                            <div class="col-xl-8">
+                                <input id="email" name="email" maxlength="255" placeholder="Email" required class="form-control" ng-model="customer.Email" type="email" ng-class="{ 'is-invalid' : formCustomer.email.$invalid && !formCustomer.email.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formCustomer.email.$invalid && !formCustomer.email.$pristine">
+                                    Email không được để trống.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-xl-4">
+                                <span class="lbl">CMT/Thẻ căn cước</span>
+                            </div>
+                            <div class="col-xl-8">
+                                <input id="idCard" name="idCard" maxlength="255" placeholder="Số CMND" required class="form-control" ng-model="customer.IDCard" type="text" ng-class="{ 'is-invalid' : formCustomer.idCard.$invalid && !formCustomer.idCard.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formCustomer.idCard.$invalid && !formCustomer.idCard.$pristine">
+                                    CMND không được để trống.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-xl-4">
+                                <span class="lbl">Địa chỉ </span>
+                            </div>
+                            <div class="col-xl-8">
+                                <input id="address" name="address" maxlength="255" placeholder="Địa chỉ" required class="form-control" ng-model="customer.Address" type="text" ng-class="{ 'is-invalid' : formCustomer.address.$invalid && !formCustomer.address.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formCustomer.address.$invalid && !formCustomer.address.$pristine">
+                                    Địa chỉ không được để trống.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-xl-4">
+                                <span class="lbl">Mô tả </span>
+                            </div>
+                            <div class="col-xl-8">
+                                <textarea id="description" name="description" placeholder="Mô tả" class="form-control" maxlength="400" ng-model="customer.Description" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
