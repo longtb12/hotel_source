@@ -1,0 +1,13 @@
+.bootstrap-datetimepicker-widget table th.prev::after {
+    position: relative !important;
+    width: 10px !important;
+    height: 23px !important;
+    content: "<" !important;
+}
+
+.bootstrap-datetimepicker-widget table th.next::after {
+    position: relative !important;
+    width: 10px !important;
+    height: 23px !important;
+    content: ">" !important;
+}

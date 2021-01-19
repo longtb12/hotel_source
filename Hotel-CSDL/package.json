@@ -1,0 +1,43 @@
+{
+  "name": "client_manager",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm run copy-libs",
+    "postupdate-deps": "npm run copy-libs",
+    "copy-libs": "cpx \"node_modules/{angular,angular-*,bootstrap/dist,jquery/dist,crypto-js,jquery.fancytree/dist,moment/min,eonasdan-bootstrap-datetimepicker/build,chart.js/dist,fullcalendar/dist,fullcalendar/dist/locale,angularjs-dropdown-multiselect/dist,ng-device-detector,ua-device-detector,re-tree}/*\" wwwroot/assets/core -C"
+  },
+  "dependencies": {
+    "-": "0.0.1",
+    "angular": "^1.8.0",
+    "angular-animate": "^1.8.0",
+    "angular-block-ui": "^0.2.2",
+    "angular-chart.js": "^1.1.1",
+    "angular-cookies": "^1.8.0",
+    "angular-resource": "^1.8.0",
+    "angular-toastr": "^2.1.1",
+    "angular-ui-router": "^1.0.28",
+    "angularjs-dropdown-multiselect": "^1.11.8",
+    "bootstrap": "^4.5.2",
+    "crypto-js": "^4.0.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "fullcalendar": "^5.3.2",
+    "g": "^2.0.1",
+    "jquery": "^3.5.1",
+    "jquery.fancytree": "^2.36.1",
+    "moment": "^2.27.0",
+    "ng-device-detector": "^5.1.4"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.8.0",
+    "cpx": "^1.5.0",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-htmlclean": "^2.7.22",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "rimraf": "^3.0.2"
+  }
+}

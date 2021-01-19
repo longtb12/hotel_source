@@ -1,0 +1,12 @@
+F:\Project\Hotel-CSDL\Sercurities.Extensions\bin\Debug\netcoreapp3.1\Sercurities.Extensions.deps.json
+F:\Project\Hotel-CSDL\Sercurities.Extensions\bin\Debug\netcoreapp3.1\Sercurities.Extensions.dll
+F:\Project\Hotel-CSDL\Sercurities.Extensions\bin\Debug\netcoreapp3.1\Sercurities.Extensions.pdb
+F:\Project\Hotel-CSDL\Sercurities.Extensions\bin\Debug\netcoreapp3.1\Libraries.Extensions.dll
+F:\Project\Hotel-CSDL\Sercurities.Extensions\bin\Debug\netcoreapp3.1\Libraries.Extensions.pdb
+F:\Project\Hotel-CSDL\Sercurities.Extensions\obj\Debug\netcoreapp3.1\Sercurities.Extensions.csprojAssemblyReference.cache
+F:\Project\Hotel-CSDL\Sercurities.Extensions\obj\Debug\netcoreapp3.1\Sercurities.Extensions.AssemblyInfoInputs.cache
+F:\Project\Hotel-CSDL\Sercurities.Extensions\obj\Debug\netcoreapp3.1\Sercurities.Extensions.AssemblyInfo.cs
+F:\Project\Hotel-CSDL\Sercurities.Extensions\obj\Debug\netcoreapp3.1\Sercurities.Extensions.csproj.CoreCompileInputs.cache
+F:\Project\Hotel-CSDL\Sercurities.Extensions\obj\Debug\netcoreapp3.1\Sercurities.Extensions.csproj.CopyComplete
+F:\Project\Hotel-CSDL\Sercurities.Extensions\obj\Debug\netcoreapp3.1\Sercurities.Extensions.dll
+F:\Project\Hotel-CSDL\Sercurities.Extensions\obj\Debug\netcoreapp3.1\Sercurities.Extensions.pdb

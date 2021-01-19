@@ -1,0 +1,9 @@
+F:\Project\Hotel-CSDL\Libraries.Extensions\bin\Debug\netcoreapp3.1\Libraries.Extensions.deps.json
+F:\Project\Hotel-CSDL\Libraries.Extensions\bin\Debug\netcoreapp3.1\Libraries.Extensions.dll
+F:\Project\Hotel-CSDL\Libraries.Extensions\bin\Debug\netcoreapp3.1\Libraries.Extensions.pdb
+F:\Project\Hotel-CSDL\Libraries.Extensions\obj\Debug\netcoreapp3.1\Libraries.Extensions.csprojAssemblyReference.cache
+F:\Project\Hotel-CSDL\Libraries.Extensions\obj\Debug\netcoreapp3.1\Libraries.Extensions.AssemblyInfoInputs.cache
+F:\Project\Hotel-CSDL\Libraries.Extensions\obj\Debug\netcoreapp3.1\Libraries.Extensions.AssemblyInfo.cs
+F:\Project\Hotel-CSDL\Libraries.Extensions\obj\Debug\netcoreapp3.1\Libraries.Extensions.csproj.CoreCompileInputs.cache
+F:\Project\Hotel-CSDL\Libraries.Extensions\obj\Debug\netcoreapp3.1\Libraries.Extensions.dll
+F:\Project\Hotel-CSDL\Libraries.Extensions\obj\Debug\netcoreapp3.1\Libraries.Extensions.pdb

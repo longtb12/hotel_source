@@ -1,0 +1,48 @@
+
+<div class="content d-flex justify-content-center align-items-center">
+
+    <!-- Login form -->
+    <form name="form" class="login-form" ng-submit="activate()">
+        <div class="card mb-0">
+            <div class="card-body">
+                <div class="text-center mb-3">
+                    <i class="icon-reading icon-2x text-slate-300 border-slate-300 border-3 rounded-round p-3 mb-3 mt-1"></i>
+                    <h5 class="mb-0">ĐĂNG NHẬP HỆ THỐNG</h5>
+                    <span class="d-block text-muted">Thông tin tài khoản</span>
+                </div>
+
+                <div class="form-group form-group-feedback form-group-feedback-left">
+                    <input type="text" id="user_name" name="user_name" class="form-control" placeholder="Tài khoản" ng-model="user_name" required />
+                    <div ng-show="form.$submitted || form.user_name.$touched">
+                        <span class="error" ng-show="form.user_name.$error.required">Tài khoản không được để trống.</span>
+                    </div>
+                    <div class="form-control-feedback">
+                        <i class="icon-user text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group form-group-feedback form-group-feedback-left">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" ng-model="password" required />
+                    <div ng-show="form.$submitted || form.password.$touched">
+                        <span class="error" ng-show="form.password.$error.required">Mật khẩu không được để trống.</span>
+                    </div>
+                    <div class="form-control-feedback">
+                        <i class="icon-lock2 text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Đăng nhập <i class="icon-circle-right2 ml-2"></i></button>
+                </div>
+
+                <div class="form-group text-center text-muted content-divider">
+                    <span class="px-2"></span>
+                </div>
+
+                <span class="form-text text-center text-muted"><a href="#">Điều khoản &amp; Điều kiện</a> và <a href="#">Chính sách bảo mật</a></span>
+            </div>
+        </div>
+    </form>
+    <!-- /login form -->
+
+</div>

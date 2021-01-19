@@ -1,0 +1,63 @@
+﻿<div id="calendar" class="modal fade" >
+    <div class="modal-dialog modal-dialog-scrollable">
+        <form style="width: 100%;" name="form" ng-submit="submit(form)" novalidate>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cấu hình lịch làm việc cho ngày : {{request.calendar_date_str}}</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+
+                        <div class="col-md-12 border-right-1 border-right-pink left-column">
+                            <fieldset class="content-group">
+                                <legend class="font-weight-semibold text-uppercase font-size-sm"></legend>
+                                <div class="row form-group">
+                                    <div class="col-md-3">
+                                        <label for="title">Tiêu đề <span class="text-danger">*</span></label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input id="title" name="title" class="form-control" placeholder="Tiêu đề" ng-model="request.day_title_vn" maxlength="45" required ng-class="{ 'is-invalid' : form.title.$invalid && !form.title.$pristine }" disabled />
+                                        <div class="invalid-feedback" ng-show="form.title.$invalid && !form.title.$pristine">Tiêu đề không được để trống.</div>
+                                    </div>
+                                </div>
+                                <!--<div class="row form-group">
+                                    <div class="col-md-3">
+                                        <label for="desciption">Nội dung </label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <textarea id="desciption" name="desciption" rows="5" class="form-control" placeholder="Nội dung" ng-model="request.description" maxlength="4000" ng-disabled="!canEdit"></textarea>
+                                    </div>
+                                </div>-->
+                                <div class="row form-group">
+                                    <div class="col-md-3">
+                                        <label for="is_holiday">Là ngày nghỉ lễ </label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <input type="checkbox" id="is_holiday" name="is_holiday" ng-model="request.is_holiday" ng-disabled="!canEdit" />
+                                    </div>
+                                </div>
+                                <div class="row form-group" ng-show="request.is_holiday">
+                                    <div class="col-md-3">
+                                        <label for="holiday_title">Nghỉ lễ </label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <textarea id="holiday_title" name="holiday_title" rows="5"  class="form-control" placeholder="Nghỉ lễ" ng-model="request.holiday_title" maxlength="255" ng-disabled="!canEdit"></textarea>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn bg-primary btn-sm" ng-show="canEdit"><i class="icon-floppy-disk"></i> Xác nhận</button>
+                    <button type="button" class="btn btn-link btn-sm" data-dismiss="modal"><i class="icon-close2"></i> Thoát</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

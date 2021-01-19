@@ -1,0 +1,189 @@
+﻿<style>
+
+    .row_padding {
+        padding: 8px;
+    }
+</style>
+
+<div class="content">
+    <div class="card">
+        <div class="card-header header-elements-sm-inline"><h6 class="card-title">Quản lý đơn vị phòng ban</h6></div>
+        <div class="card-body border-top-1 border-top-pink" style="display: flex;">
+            <div class="col-md-6 border-right-1 border-right-pink">
+                <div class="row" style="padding-top:10px;">
+                    <div class="tree-container">
+                        <div class="tree-default">
+                            <ul class="d-none mb-0"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="padding: 10px">
+                <div class="form-group">
+                    <button type="button" action-user="128A" ui-sref-active="active" class="btn btn-secondary" ng-show="Function.Id != 0" ng-click="create()"><i class="icon-plus-circle2"></i>Thêm Mới</button>
+                    <button type="button" action-user="130A" ui-sref-active="active" class="btn btn-light btn-sm" ng-show="Function.Id != 0" ng-click="Delete(Function.Id)"><i class="icon-lock5"></i>Xóa</button>
+                </div>
+                <div class="form-group">
+                    <button type="submit" form="formFunction" class="btn btn-primary"><i class="icon-floppy-disk"></i> Xác nhận</button>
+                </div>
+                <div class="col-md-12">
+                    <form id="formFunction" name="formFunction" novalidate ng-submit="submitFunction(formFunction)">
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <label for="parent_id">Chức năng cha :<span class="required">*</span></label>
+                            </div>
+                            <div class="col-9 ">
+                                <select id="parent_id" name="parent_id" class="form-control" ng-model="Function.ParentId" ng-options="item.value as item.display_name for item in dropDownlists" required></select>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Tên chức năng :<span class="required">*</span></span>
+                            </div>
+                            <div class="col-9 ">
+                                <input id="Name" name="Name" maxlength="255" placeholder="Tên chức năng" required class="form-control" ng-model="Function.Name" type="text" ng-class="{ 'is-invalid' : formFunction.Name.$invalid && !formFunction.Name.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formFunction.Name.$invalid && !formFunction.Name.$pristine">
+                                    Tên không được để trống
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">ActionLink :<span class="required">*</span></span>
+                            </div>
+                            <div class="col-9 ">
+                                <input id="ActionLink" name="ActionLink" class="form-control" ng-model="Function.ActionLink" type="text" />
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Mô tả :</span>
+                            </div>
+                            <div class="col-9 ">
+                                <textarea id="Description" name="Description" placeholder="Mô tả chi tiết" class="form-control" maxlength="500" ng-model="Function.Description" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Show In Menu :</span>
+                            </div>
+                            <div class="col-9 ">
+                                <div class="form-check">
+                                    <input type="checkbox" id="ShowInMenu" name="ShowInMenu" class="form-check-input" ng-model="Function.ShowInMenu">
+                                    <label class="form-check-label" for="ShowInMenu"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="form-group">
+                        <button type="button" action-user="132A" ui-sref-active="active" class="btn btn-primary" ng-click="add_action(form_action)">Thêm quyền</button>
+                    </div>
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <table class="table text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center" style="width: 50px;">STT</th>
+                                        <th style="width: 300px;" class="text-center">Tên</th>
+                                        <th class="text-center">Mã</th>
+                                        <th class="text-center" style="width: 20px;"><i class="icon-arrow-down12"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="item in Function.Actions">
+                                    <tr>
+                                        <td class="text-center">{{$index + 1}}</td>
+                                        <td class="text-center">{{item.Name}}</td>
+                                        <td class="text-center">{{item.Code}}</td>
+                                        <td>
+                                            <button type="button" action-user="133A" ui-sref-active="active" ng-click="edit_action(item)"><i class="icon-pencil7"></i></button>
+                                            <button type="button" action-user="134A" ui-sref-active="active" ng-click="delete_action($index)"><i class="icon-trash"></i></button>
+                                        </td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--Modal-->
+                    <div id="add_action_of_function" class="modal" data-keyboard="false" data-backdrop="false" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Action</h5>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+
+                                <div class="modal-body">
+
+                                    <form id="form_action" name="form_action" novalidate ng-submit="submit_action(form_action)">
+                                        <div class="row" style="padding-top:10px; padding-bottom:10px;">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Tên action :<span class="required">*</span></label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <input type="text" name="name" class="form-control" placeholder="Tên chức năng" ng-model="Action.Name" maxlength="500" required ng-class="{ 'is-invalid' : form_action.name.$invalid && !form_action.name.$pristine }" />
+                                                <div class="invalid-feedback" ng-show="form_action.name.$invalid && !form_action.name.$pristine">
+                                                    Tên action không được để trống.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding-top:10px; padding-bottom:10px;">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Tên khu vực :</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <input type="text" id="AreaName" name="AreaName" class="form-control" placeholder="Area Name" ng-model="Action.AreaName" maxlength="250"/>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding-top:10px; padding-bottom:10px;">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Tên Controller :</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <input type="text" id="ControllerName" name="ControllerName" class="form-control" ng-model="Action.ControllerName" maxlength="300" />
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding-top:10px; padding-bottom:10px;">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Tên Action :</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <input type="text" id="ActionName" name="ActionName" class="form-control" ng-model="Action.ActionName" maxlength="250" />
+                                            </div>
+                                        </div>
+                                        <div class="row" style="padding-top:10px; padding-bottom:10px;">
+                                            <div class="col-lg-4">
+                                                <div class="form-group">
+                                                    <label>Phương thức :</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-8">
+                                                <input type="text" id="Method" name="Method" class="form-control" ng-model="Action.Method" maxlength="250" />
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" action-user="135A" ui-sref-active="active" class="btn bg-primary btn-sm" form="form_action"><i class="icon-floppy-disk"></i> Xác nhận</button>
+                                    <button type="button" class="btn btn-link btn-sm" data-dismiss="modal"><i class="icon-close2"></i> Thoát</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--Finish modal-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

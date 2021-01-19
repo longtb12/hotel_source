@@ -1,0 +1,8 @@
+
+<ul class="pagination pagination-separated">
+    <li class="page-item" ng-class="{disabled:paging.page_index === 1}"><a href="#" ng-click="set_page(1)" class="page-link">&larr; &nbsp; Trang đầu</a></li>
+    <li class="page-item" ng-class="{disabled:paging.page_index === 1}"><a href="#" ng-click="set_page(paging.page_index - 1)" class="page-link">&larr; &nbsp;</a></li>
+    <li class="page-item" ng-repeat="page in paging.total_pages" ng-class="{active:paging.page_index === page}"><a class="page-link" ng-click="set_page(page)">{{page}}</a></li>
+    <li class="page-item" ng-class="{disabled:paging.page_index === paging.total_page}"><a ng-click="set_page(paging.page_index + 1)" href="#" class="page-link">&nbsp; &rarr;</a></li>
+    <li class="page-item" ng-class="{disabled:paging.page_index === paging.total_page}"><a ng-click="set_page(paging.total_page)" href="#" class="page-link">Trang cuối &nbsp; &rarr;</a></li>
+</ul>

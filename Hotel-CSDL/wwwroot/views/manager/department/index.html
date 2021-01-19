@@ -1,0 +1,122 @@
+<style>
+
+    .row_padding {
+        padding: 8px;
+    }
+</style>
+
+<div class="content">
+    <div class="card">
+        <div class="card-header header-elements-sm-inline"><h6 class="card-title">Quản lý đơn vị phòng ban</h6></div>
+        <div class="card-body border-top-1 border-top-pink" style="display: flex;">
+            <div class="col-md-4 border-right-1 border-right-pink">
+                <div class="row" style="padding-top:10px;">
+                    <div class="tree-container">
+                        <div class="tree-default">
+                            <ul class="d-none mb-0"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" style="padding: 10px">
+                <div class="form-group">
+                    <button type="button" action-user="123A" ui-sref-active="active" class="btn btn-secondary" ng-show="Department.Id != 0" ng-click="create()"><i class="icon-plus-circle2"></i>Thêm Mới</button>
+                    <button type="button" action-user="125A" ui-sref-active="active" class="btn btn-light btn-sm" ng-show="Department.Id != 0" ng-click="Delete(Department.Id)"><i class="icon-lock5"></i>Xóa</button>
+                </div>
+                <div class="form-group">
+                    <button type="submit" action-user="124A" ui-sref-active="active" form="formDepartment" class="btn btn-primary"><i class="icon-floppy-disk"></i> Xác nhận</button>
+                </div>
+                <div class="col-md-12">
+                    <form id="formDepartment" name="formDepartment" novalidate ng-submit="submitDepartment(formDepartment)">
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Loại </span>
+                            </div>
+                            <div class="col-9 ">
+                                <div class="form-check">
+                                    <input type="checkbox" id="IsUnit" name="IsUnit" class="form-check-input" ng-model="Department.IsUnit">
+                                    <label class="form-check-label" for="IsUnit">Là đơn vị</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <label for="parent_id">Thuộc Đơn vị/phòng ban<span class="required">*</span></label>
+                            </div>
+                            <div class="col-9 ">
+                                <select id="parent_id" name="parent_id" class="form-control" ng-model="Department.ParentId" ng-options="item.value as item.display_name for item in dropDownlists" required></select>
+                                <div class="invalid-feedback" ng-show="formDepartment.parent_id.$invalid && !formDepartment.parent_id.$pristine">Chưa chọn đơn vị/phòng ban trực thuộc.</div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Viết tắt </span>
+                            </div>
+                            <div class="col-9 ">
+                                <input id="Acronym" name="Acronym" class="form-control" maxlength="30" ng-model="Department.Acronym" required type="text" ng-class="{ 'is-invalid' : formDepartment.Acronym.$invalid && !formDepartment.Acronym.$pristine }"/>
+                                <div class="invalid-feedback" ng-show="formDepartment.Acronym.$invalid && !formDepartment.Acronym.$pristine">
+                                    Viết tắt không được để trống.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Tên ngắn gọn </span>
+                            </div>
+                            <div class="col-9 ">
+                                <input id="ShortName" name="ShortName" class="form-control" maxlength="150" ng-model="Department.ShortName" required type="text" ng-class="{ 'is-invalid' : formDepartment.ShortName.$invalid && !formDepartment.ShortName.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formDepartment.ShortName.$invalid && !formDepartment.ShortName.$pristine">
+                                    Tên ngắn gọn không được để trống.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Tên đầy đủ </span>
+                            </div>
+                            <div class="col-9 ">
+                                <input id="Name" name="Name" maxlength="255" placeholder="Tên đơn vị/phòng ban" required class="form-control" ng-model="Department.FullName" type="text" ng-class="{ 'is-invalid' : formDepartment.Name.$invalid && !formDepartment.Name.$pristine }" />
+                                <div class="invalid-feedback" ng-show="formDepartment.Name.$invalid && !formDepartment.Name.$pristine">
+                                    Tên đơn vị/phòng ban không được để trống
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Số điện thoại </span>
+                            </div>
+                            <div class="col-9 ">
+                                <input id="PhoneNumber" name="PhoneNumber" class="form-control" maxlength="50" ng-model="Department.PhoneNumber" type="text" />
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Email </span>
+                            </div>
+                            <div class="col-9 ">
+                                <input id="Email" name="Email" maxlength="500" class="form-control" ng-model="Department.Email" type="text" />
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Địa chỉ </span>
+                            </div>
+                            <div class="col-9 ">
+                                <input id="Address" name="Address" class="form-control" ng-model="Department.Address" type="text" />
+                            </div>
+                        </div>
+                        <div class="row row_padding">
+                            <div class="col-3">
+                                <span class="lbl">Mô tả </span>
+                            </div>
+                            <div class="col-9 ">
+                                <textarea id="Description" name="Description" placeholder="Mô tả chi tiết" class="form-control" maxlength="500" ng-model="Department.Description" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

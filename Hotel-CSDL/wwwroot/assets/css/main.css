@@ -1,0 +1,27 @@
+﻿.required {
+    color: red;
+}
+
+.text-black {
+    color: #333 !important;
+}
+.fc-icon-left-single-arrow:after {
+    line-height: 0 !important;
+    font-family: "auto";
+}
+.fc-icon-right-single-arrow:after {
+    line-height: 0 !important;
+    font-family: "auto";
+}
+.text-bold {
+    font-weight: 700;
+}
+.text-uppercase{
+    text-transform:uppercase;
+}
+.btn{
+    margin-left:7px;
+}
+.hidden-action {
+    display: none;
+}

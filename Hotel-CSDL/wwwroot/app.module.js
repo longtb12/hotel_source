@@ -1,0 +1,1 @@
+!function(){"use strict";angular.module("app",["ui.router","ngAnimate","ngCookies","toastr","blockUI","chart.js","angularjs-dropdown-multiselect","ng.deviceDetector","app.manager"])}(),function(){"use strict";angular.module("app.manager",["ui.router","ngAnimate","ngCookies"])}();

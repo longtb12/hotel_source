@@ -1,0 +1,9 @@
+F:\Project\Hotel-CSDL\DataAccess.Mapping\bin\Debug\netcoreapp3.1\DataAccess.Mapping.deps.json
+F:\Project\Hotel-CSDL\DataAccess.Mapping\bin\Debug\netcoreapp3.1\DataAccess.Mapping.dll
+F:\Project\Hotel-CSDL\DataAccess.Mapping\bin\Debug\netcoreapp3.1\DataAccess.Mapping.pdb
+F:\Project\Hotel-CSDL\DataAccess.Mapping\obj\Debug\netcoreapp3.1\DataAccess.Mapping.AssemblyInfoInputs.cache
+F:\Project\Hotel-CSDL\DataAccess.Mapping\obj\Debug\netcoreapp3.1\DataAccess.Mapping.AssemblyInfo.cs
+F:\Project\Hotel-CSDL\DataAccess.Mapping\obj\Debug\netcoreapp3.1\DataAccess.Mapping.csproj.CoreCompileInputs.cache
+F:\Project\Hotel-CSDL\DataAccess.Mapping\obj\Debug\netcoreapp3.1\DataAccess.Mapping.dll
+F:\Project\Hotel-CSDL\DataAccess.Mapping\obj\Debug\netcoreapp3.1\DataAccess.Mapping.pdb
+F:\Project\Hotel-CSDL\DataAccess.Mapping\obj\Debug\netcoreapp3.1\DataAccess.Mapping.csprojAssemblyReference.cache

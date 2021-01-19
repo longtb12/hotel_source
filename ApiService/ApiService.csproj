@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess.Repositories\DataAccess.Repositories.csproj" />
+    <ProjectReference Include="..\DataService.Data\DataService.Data.csproj" />
+    <ProjectReference Include="..\DataService.Object\DataService.Object.csproj" />
+    <ProjectReference Include="..\Libraries.Extensions\Libraries.Extensions.csproj" />
+    <ProjectReference Include="..\Sercurities.Extensions\Sercurities.Extensions.csproj" />
+  </ItemGroup>
+
+
+</Project>

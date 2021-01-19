@@ -1,0 +1,246 @@
+﻿<style>
+    .card_room {
+        height: 140px;
+    }
+
+    .row_padding {
+        padding: 8px;
+    }
+</style>
+<div class="content">
+    <div id="Search" class="card">
+        <div class="card-header header-elements-inline">
+            <h5 class="card-title">Danh sách phòng</h5>
+            <div class="header-elements">
+                <div class="list-icons">
+                    <a ng-click="add_giaodich()" class="btn btn-primary btn-sm" style="margin-right: 5px;"><i class="icon-add"></i> Tạo mới giao dịch</a>
+                    <button type="button" class="btn btn-light btn-sm" ng-click="show_hide_advance_search()"><i class="{{searchBarClass}}"></i> Tìm kiếm nâng cao</button>
+                </div>
+            </div>
+        </div>
+        <div id="AreaSearchInformation" class="card-body border-top-1 border-top-pink">
+
+            <form id="formSearch" name="formSearch" novalidate ng-submit="submitSearch(formSearch)">
+                <div class="row row_padding">
+                    <div class="col-2">
+                        <span class="lbl">Ngày bắt đầu</span>
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="StartDate" name="StartDate" class="form-control datepicker" placeholder="dd/MM/yyyy" autocomplete="off" ng-model="searchRequest.StartDate" required ng-class="{ 'is-invalid' : formSearch.StartDate.$invalid && !formSearch.StartDate.$pristine }">
+                        <div class="invalid-feedback" ng-show="formSearch.StartDate.$invalid && !formSearch.StartDate.$pristine">
+                            Ngày bắt đầu không được để trống.
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-2">
+                        <span class="lbl">Ngày kết thúc</span>
+                    </div>
+                    <div class="col-3">
+                        <input type="text" id="EndDate" name="EndDate" class="form-control datepicker" placeholder="dd/MM/yyyy" autocomplete="off" ng-model="searchRequest.EndDate" required ng-class="{ 'is-invalid' : formSearch.EndDate.$invalid && !formSearch.EndDate.$pristine }">
+                        <div class="invalid-feedback" ng-show="formSearch.EndDate.$invalid && !formSearch.EndDate.$pristine">
+                            Ngày kết thúc không được để trống.
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-sm" style="margin-right: 5px;"><i class="icon-search4"></i> Tìm kiếm</button>
+                    <button type="button" class="btn btn-danger btn-sm" ng-click="reset()"><i class="icon-reset"></i> Xóa điều kiện</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- dashboard content -->
+
+    <div id="add_gd" class="modal" data-keyboard="false" data-backdrop="false" tabindex="-1">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tạo mới giao dịch</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="table-responsive">
+                            <form id="form" name="form" novalidate ng-submit="submit(form)">
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Họ tên</span>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <input id="firstName" name="firstName" maxlength="255" placeholder="Họ tên đệm" required class="form-control" ng-model="customer_gd.FirstName" type="text" ng-class="{ 'is-invalid' : form.firstName.$invalid && !form.firstName.$pristine }" />
+                                        <div class="invalid-feedback" ng-show="form.firstName.$invalid && !form.firstName.$pristine">
+                                            Họ tên đệm không được để trống.
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <input id="lastName" name="lastName" maxlength="255" placeholder="Tên" required class="form-control" ng-model="customer_gd.LastName" type="text" ng-class="{ 'is-invalid' : form.lastName.$invalid && !form.lastName.$pristine }" />
+                                        <div class="invalid-feedback" ng-show="form.lastName.$invalid && !form.lastName.$pristine">
+                                            Tên không được để trống.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Giới tính - Điện thoại</span>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <select id="gender" name="gender" class="form-control" ng-model="customer_gd.Gender" ng-options="item.id as item.name for item in gender" required>
+                                            <option value="">-- Chọn giới tính --</option>
+                                        </select>
+                                        <div class="invalid-feedback" ng-show="form.gender.$invalid && !form.gender.$pristine">Chưa chọn giới tính.</div>
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <input id="phoneNumber" name="phoneNumber" maxlength="255" placeholder="Số điện thoại" required class="form-control" ng-model="customer_gd.PhoneNumber" type="text" ng-class="{ 'is-invalid' : form.phoneNumber.$invalid && !form.phoneNumber.$pristine }" />
+                                        <div class="invalid-feedback" ng-show="form.phoneNumber.$invalid && !form.phoneNumber.$pristine">
+                                            Số điện thoại không được để trống.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Email</span>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <input id="email" name="email" maxlength="255" placeholder="Email" required class="form-control" ng-model="customer_gd.Email" type="email" ng-class="{ 'is-invalid' : form.email.$invalid && !form.email.$pristine }" />
+                                        <div class="invalid-feedback" ng-show="form.email.$invalid && !form.email.$pristine">
+                                            Email không được để trống.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">CMT/Thẻ căn cước</span>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <input id="idCard" name="idCard" maxlength="255" placeholder="Số CMND" required class="form-control" ng-model="customer_gd.IDCard" type="text" ng-class="{ 'is-invalid' : form.idCard.$invalid && !form.idCard.$pristine }" />
+                                        <div class="invalid-feedback" ng-show="form.idCard.$invalid && !form.idCard.$pristine">
+                                            CMND không được để trống.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Địa chỉ </span>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <input id="address" name="address" maxlength="255" placeholder="Địa chỉ" required class="form-control" ng-model="customer_gd.Address" type="text" ng-class="{ 'is-invalid' : form.address.$invalid && !form.address.$pristine }" />
+                                        <div class="invalid-feedback" ng-show="form.address.$invalid && !form.address.$pristine">
+                                            Địa chỉ không được để trống.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Đặt cọc </span>
+                                    </div>
+                                    <div class="col-xl-8">
+                                        <input id="Deposit" name="Deposit" maxlength="255" placeholder="Đặt cọc" required class="form-control" ng-model="customer_gd.Deposit" type="number" ng-class="{ 'is-invalid' : form.Deposit.$invalid && !form.Deposit.$pristine }" />
+                                        <div class="invalid-feedback" ng-show="form.Deposit.$invalid && !form.Deposit.$pristine">
+                                            Địa chỉ không được để trống.
+                                        </div>
+                                    </div>
+                                </div>
+                                <fieldset>
+                                    <legend class="font-weight-semibold text-uppercase font-size-sm">
+                                        Danh sách phòng
+                                        <a href="javascript:void(0)" ng-click="add_room_gd()" class="btn-link float-right"><i class="icon-add"></i> Thêm phòng</a>
+                                    </legend>
+                                    <div class="row">
+                                        <div class="col-md-12 table-responsive">
+                                            <table class="table table-hover">
+                                                <thead>
+                                                    <tr class="bg-light-gray">
+                                                        <th class="text-center" style="width: 40px;">#</th>
+                                                        <th class="text-center" style="width: 120px;">Phòng</th>
+                                                        <th class="text-center" style="width: 120px;">Ngày bắt đầu</th>
+                                                        <th class="text-center" style="width: 120px;">Ngày kết thúc</th>
+                                                        <th class="text-center" style="width: 140px;">Đơn Giá</th>
+                                                        <th class="text-center" style="width: 140px;">Giá</th>
+                                                        <th class="text-center" style="width: 40px;"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr ng-repeat="item in customer_gd.gds">
+                                                        <td class="text-center">{{$index + 1}}</td>
+                                                        <td>
+                                                            <select class="form-control" ng-model="item.Id" ng-change="change_room(item)" ng-options="u.Id as u.Name for u in roomsSelect">
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="StartDateGD" name="StartDateGD" class="form-control datepicker" ng-change="change_date(item)" placeholder="dd/MM/yyyy" autocomplete="off" ng-model="item.StartDate">
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="EndDateGD" name="EndDateGD" class="form-control datepicker" ng-change="change_date(item)" placeholder="dd/MM/yyyy" autocomplete="off" ng-model="item.EndDate">
+                                                        </td>
+                                                        <td>
+                                                            {{item.RoomPrice}}
+                                                        </td>
+                                                        <td>
+                                                            {{item.Price}}
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <button type="button" class="btn btn-danger btn-sm" ng-click="remove_task_of_project($index)"><i class="icon-minus2"></i></button>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="row row_padding">
+                                    <div class="col-xl-4">
+                                        <span class="lbl">Số tiền phải trả </span>
+                                    </div>
+                                    <div class="col-xl-6">
+
+                                    </div>
+                                    <div class="col-xl-2">
+                                        {{customer_gd.Price}}
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-primary btn-sm" ng-click="submit(form)"><i class="icon-floppy-disk"></i> Xác nhận</button>
+                    <button type="button" class="btn btn-link btn-sm" data-dismiss="modal"><i class="icon-close2"></i> Thoát</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3" ng-repeat="item in rooms">
+
+            <!-- Members online -->
+            <div class="card  card_room" ng-class="{'bg-pink-400': item.checkRoom == 0, 'bg-secondary' : item.checkRoom == 1}">
+                <div class="card-body">
+                    <div class="d-flex">
+                        <h3 class="font-weight-semibold mb-0">{{item.Name}}</h3>
+                    </div>
+
+                    <div>
+                        Loại phòng :{{item.RoomTypeName}}
+                        <div class="font-size-sm opacity-75">Giá phòng :{{item.RoomPrice}}</div>
+                    </div>
+                    <div>
+                        {{item.RoomDescription}}
+                    </div>
+                    <div>
+                        Thuê từ ngày :{{item.StartDateGD}} - {{item.EndDateGD}}
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- /members online -->
+
+        </div>
+
+
+    </div>
+    <!-- /dashboard content -->
+
+</div>

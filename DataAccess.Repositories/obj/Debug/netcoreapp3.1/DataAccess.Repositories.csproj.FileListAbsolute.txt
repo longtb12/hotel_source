@@ -1,0 +1,12 @@
+F:\Project\Hotel-CSDL\DataAccess.Repositories\bin\Debug\netcoreapp3.1\DataAccess.Repositories.deps.json
+F:\Project\Hotel-CSDL\DataAccess.Repositories\bin\Debug\netcoreapp3.1\DataAccess.Repositories.dll
+F:\Project\Hotel-CSDL\DataAccess.Repositories\bin\Debug\netcoreapp3.1\DataAccess.Repositories.pdb
+F:\Project\Hotel-CSDL\DataAccess.Repositories\bin\Debug\netcoreapp3.1\DataAccess.Mapping.dll
+F:\Project\Hotel-CSDL\DataAccess.Repositories\bin\Debug\netcoreapp3.1\DataAccess.Mapping.pdb
+F:\Project\Hotel-CSDL\DataAccess.Repositories\obj\Debug\netcoreapp3.1\DataAccess.Repositories.csprojAssemblyReference.cache
+F:\Project\Hotel-CSDL\DataAccess.Repositories\obj\Debug\netcoreapp3.1\DataAccess.Repositories.AssemblyInfoInputs.cache
+F:\Project\Hotel-CSDL\DataAccess.Repositories\obj\Debug\netcoreapp3.1\DataAccess.Repositories.AssemblyInfo.cs
+F:\Project\Hotel-CSDL\DataAccess.Repositories\obj\Debug\netcoreapp3.1\DataAccess.Repositories.csproj.CoreCompileInputs.cache
+F:\Project\Hotel-CSDL\DataAccess.Repositories\obj\Debug\netcoreapp3.1\DataAccess.Repositories.csproj.CopyComplete
+F:\Project\Hotel-CSDL\DataAccess.Repositories\obj\Debug\netcoreapp3.1\DataAccess.Repositories.dll
+F:\Project\Hotel-CSDL\DataAccess.Repositories\obj\Debug\netcoreapp3.1\DataAccess.Repositories.pdb

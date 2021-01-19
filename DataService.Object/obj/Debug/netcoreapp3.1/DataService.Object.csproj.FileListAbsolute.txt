@@ -1,0 +1,12 @@
+F:\Project\Hotel-CSDL\DataService.Object\bin\Debug\netcoreapp3.1\DataService.Object.deps.json
+F:\Project\Hotel-CSDL\DataService.Object\bin\Debug\netcoreapp3.1\DataService.Object.dll
+F:\Project\Hotel-CSDL\DataService.Object\bin\Debug\netcoreapp3.1\DataService.Object.pdb
+F:\Project\Hotel-CSDL\DataService.Object\bin\Debug\netcoreapp3.1\Libraries.Extensions.dll
+F:\Project\Hotel-CSDL\DataService.Object\bin\Debug\netcoreapp3.1\Libraries.Extensions.pdb
+F:\Project\Hotel-CSDL\DataService.Object\obj\Debug\netcoreapp3.1\DataService.Object.csprojAssemblyReference.cache
+F:\Project\Hotel-CSDL\DataService.Object\obj\Debug\netcoreapp3.1\DataService.Object.AssemblyInfoInputs.cache
+F:\Project\Hotel-CSDL\DataService.Object\obj\Debug\netcoreapp3.1\DataService.Object.AssemblyInfo.cs
+F:\Project\Hotel-CSDL\DataService.Object\obj\Debug\netcoreapp3.1\DataService.Object.csproj.CoreCompileInputs.cache
+F:\Project\Hotel-CSDL\DataService.Object\obj\Debug\netcoreapp3.1\DataService.Object.csproj.CopyComplete
+F:\Project\Hotel-CSDL\DataService.Object\obj\Debug\netcoreapp3.1\DataService.Object.dll
+F:\Project\Hotel-CSDL\DataService.Object\obj\Debug\netcoreapp3.1\DataService.Object.pdb
